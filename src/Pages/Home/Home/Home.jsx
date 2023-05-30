@@ -6,6 +6,7 @@ import ContactBanner from '../ContactBanner/ContactBanner';
 import Featured from '../Featured/Featured';
 import PopularMenu from '../PopularMenu/PopularMenu';
 import SecondBanner from '../SecondBanner/SecondBanner';
+import Testimonials from '../Testimonials/Testimonials';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <ContactBanner></ContactBanner>
             <Chef></Chef>
             <Featured></Featured>
+            <Testimonials></Testimonials>
         </div>
     );
 };
