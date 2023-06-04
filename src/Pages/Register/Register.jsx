@@ -26,7 +26,7 @@ const Register = () => {
             <Helmet>
                 <title>Bistro Boss | Sign Up</title>
             </Helmet>
-            <div className="min-h-screen bg-white my-32 shadow-2xl shadow-black rounded-xl flex items-center justify-center">
+            <div className="p-3 bg-white my-32 shadow-2xl shadow-black rounded-xl flex items-center justify-center">
                 <div className="hero-content flex-col lg:flex-row-reverse items-center justify-evenly">
                     <img src={registerImg} alt="" className='md:w-1/2' />
                     <div className="card w-full max-w-sm shadow-2xl bg-base-100">

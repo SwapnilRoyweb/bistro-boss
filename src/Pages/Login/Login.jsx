@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../Providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 
@@ -16,6 +16,11 @@ const Login = () => {
     const [error, setError] = useState('');
 
     const { signIn } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -36,16 +41,18 @@ const Login = () => {
                 Swal.fire({
                     title: 'Successfully Login User',
                     showClass: {
-                      popup: 'animate__animated animate__fadeInDown'
+                        popup: 'animate__animated animate__fadeInDown'
                     },
                     hideClass: {
-                      popup: 'animate__animated animate__fadeOutUp'
+                        popup: 'animate__animated animate__fadeOutUp'
                     }
-                  })
+                });
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error);
-                setError(error.message)})
+                setError(error.message)
+            })
     }
 
     const handleValidateCaptcha = (event) => {
@@ -60,10 +67,10 @@ const Login = () => {
 
     return (
         <>
-        <Helmet>
-            <title>Bistro Boss | Login</title>
-        </Helmet>
-            <div className="min-h-screen bg-white my-32 shadow-2xl shadow-black rounded-xl flex items-center justify-center">
+            <Helmet>
+                <title>Bistro Boss | Login</title>
+            </Helmet>
+            <div className="p-3bg-white my-32 shadow-2xl shadow-black rounded-xl flex items-center justify-center">
                 <div className="hero-content flex-col lg:flex-row justify-evenly items-center">
                     <img src={loginImg} alt="" className='md:w-1/2' />
                     <div className="card w-full max-w-sm shadow-2xl bg-base-100">
