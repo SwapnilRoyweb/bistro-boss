@@ -40,6 +40,7 @@ const Login = () => {
                 console.log(user);
                 Swal.fire({
                     title: 'Successfully Login User',
+                    icon: 'success',
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
@@ -97,7 +98,7 @@ const Login = () => {
                                 </label>
                                 <input type="text" onBlur={handleValidateCaptcha} name='captcha' placeholder="Type the text above" className="input input-bordered text-white" />
                             </div>
-                            <p className='text-red-500'>{error}</p>
+                            <p className='text-red-500 mt-3 text-center'>{error}</p>
                             <div className="form-control mt-5">
                                 <input type="submit" value="Login" className='btn btn-outline bg-[#D1A054] text-white' />
                             </div>
