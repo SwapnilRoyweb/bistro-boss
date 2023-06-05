@@ -1,29 +1,41 @@
 import { data } from 'autoprefixer';
 import React from 'react';
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useCart from '../../hooks/useCart';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const FoodCard = ({item}) => {
 
     const {user} = useContext(AuthContext);
 
-    const {image, price, recipe, name} = item;
+    const {image, price, recipe, name, _id} = item;
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const [, refetch] = useCart();
 
     const handleAddToCart = item => {
         console.log(item);
         if(user){
-            fetch('localhost:5000/carts')
+            const cartItem = {menuItemId : _id, name, image, price, email: user.email}
+            fetch('http://localhost:5000/carts', {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(cartItem)
+            })
             .then(res => res.json())
             .then(data => {
                 if(data.insertedId){
+                    refetch(); //refetch cart to update the number of items in the cart
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: 'Food Added to Cart',
                         showConfirmButton: false,
                         timer: 1500
                       }) 
@@ -40,7 +52,7 @@ const FoodCard = ({item}) => {
                 confirmButtonText: 'Login Now'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  navigate('/login');
+                  navigate('/login', {state: {from: location}});
                 }
               })
         }

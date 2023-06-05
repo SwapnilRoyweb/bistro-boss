@@ -100,7 +100,7 @@ const Login = () => {
                             </div>
                             <p className='text-red-500 mt-3 text-center'>{error}</p>
                             <div className="form-control mt-5">
-                                <input type="submit" value="Login" className='btn btn-outline bg-[#D1A054] text-white' />
+                                <input disabled={disabled} type="submit" value="Login" className='btn btn-outline bg-[#D1A054] text-white' />
                             </div>
                             <p className='text-center text-white'><small>New here? <Link to='/signup' className='text-blue-500'>Create an Account</Link></small></p>
                         </form>

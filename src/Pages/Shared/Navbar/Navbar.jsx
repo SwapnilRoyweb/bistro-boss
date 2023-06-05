@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import './Navbar.css'
 import { FaShoppingCart } from 'react-icons/fa';
+import { useEffect } from 'react';
+import useCart from '../../../hooks/useCart';
 
 const Navbar = () => {
 
     const { user, logout } = useContext(AuthContext);
+
+    const [cart] = useCart();
 
     const handleLogout = () => {
         logout()
@@ -15,18 +19,20 @@ const Navbar = () => {
             .catch(error => console.log(error))
     }
 
+    // useEffect(, [])
+
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link>Contact Us</Link></li>
         <li><Link>Dashboard</Link></li>
         <li><Link to='/menu'>Our Menu</Link></li>
-        <li><Link to='/order/salad'>Order Food</Link></li>
+        <li><Link to='/order/salads'>Order Food</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
         <li>
             <Link to='/'>
                 <button className="btn gap-2">
                     <FaShoppingCart />
-                    <div className="badge badge-secondary">+0</div>
+                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
                 </button>
             </Link>
         </li>

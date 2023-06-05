@@ -34,9 +34,9 @@ const Order = () => {
             <div className='my-10 flex flex-col justify-center items-center'>
                 <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                     <TabList className="text-center mb-10 flex justify-center gap-10">
-                        <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Salad</Tab>
-                        <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Pizza</Tab>
-                        <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Soup</Tab>
+                        <Tab>Salad</Tab>
+                        <Tab>Pizza</Tab>
+                        <Tab>Soup</Tab>
                         <Tab>Dessert</Tab>
                         <Tab className='hover:border-b-4 px-3 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Drinks</Tab>
                     </TabList>
