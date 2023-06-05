@@ -1,11 +1,49 @@
+import { data } from 'autoprefixer';
 import React from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const FoodCard = ({item}) => {
 
+    const {user} = useContext(AuthContext);
+
     const {image, price, recipe, name} = item;
+
+    const navigate = useNavigate();
 
     const handleAddToCart = item => {
         console.log(item);
+        if(user){
+            fetch('localhost:5000/carts')
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                      }) 
+                }
+            })
+        }else{
+            Swal.fire({
+                title: 'Please Sign In for order food',
+                text: "You won't be able to add this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login');
+                }
+              })
+        }
     }
 
     return (

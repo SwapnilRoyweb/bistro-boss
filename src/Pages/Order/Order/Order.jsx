@@ -37,7 +37,7 @@ const Order = () => {
                         <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Salad</Tab>
                         <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Pizza</Tab>
                         <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Soup</Tab>
-                        <Tab className='hover:border-b-4 p-1 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Dessert</Tab>
+                        <Tab>Dessert</Tab>
                         <Tab className='hover:border-b-4 px-3 uppercase font-semibold hover:border-[#BB8506] hover:border-0 hover:text-[#BB8506]'>Drinks</Tab>
                     </TabList>
                     {/* Salad */}
