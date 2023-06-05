@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import './Navbar.css'
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -18,8 +19,17 @@ const Navbar = () => {
         <li><Link to='/'>Home</Link></li>
         <li><Link>Contact Us</Link></li>
         <li><Link>Dashboard</Link></li>
-        <li> <Link to='/menu'>Our Menu</Link></li>
-        <li> <Link to='/order/salad'>Order Food</Link></li>
+        <li><Link to='/menu'>Our Menu</Link></li>
+        <li><Link to='/order/salad'>Order Food</Link></li>
+        <li><Link to='/secret'>Secret</Link></li>
+        <li>
+            <Link to='/'>
+                <button className="btn gap-2">
+                    <FaShoppingCart />
+                    <div className="badge badge-secondary">+0</div>
+                </button>
+            </Link>
+        </li>
     </>
 
     return (
@@ -37,13 +47,13 @@ const Navbar = () => {
                     <a className="btn btn-ghost normal-case text-3xl">Bistro-Boss</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 flex gap-5 items-center">
+                    <ul className="menu menu-horizontal px-1 flex items-center">
                         {navItems}
                     </ul>
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <><span className='mr-5'>{user.displayName}</span> <button className='btn btn-error text-white' onClick={handleLogout}>Logout</button> </> : <button className='btn btn-primary'><Link to='/login'>Login</Link></button>
+                        user ? <><span className='mr-3'>{user.displayName}</span> <button className='btn btn-error text-white' onClick={handleLogout}>Logout</button> </> : <button className='btn btn-primary'><Link to='/login'>Login</Link></button>
                     }
                 </div>
             </div>
