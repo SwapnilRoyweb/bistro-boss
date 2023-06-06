@@ -14,7 +14,7 @@ const Register = () => {
 
     const { createUser, updateUserProfile } = useContext(AuthContext);
 
-    const [error, setError] =useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -25,25 +25,40 @@ const Register = () => {
                 const loggeduser = result.user;
                 // console.log(loggeduser);
                 updateUserProfile(data.name, data.photoURL)
-                .then(() => {
-                    console.log('user update');
-                    reset();
-                    Swal.fire({
-                        title: 'Successfully Sign Up User',
-                        icon: 'success',
-                        showClass: {
-                            popup: 'animate__animated animate__fadeInDown'
+                    .then(() => {
+                        console.log('user update');
+
+                        const savedUser = { name: data.name, email: data.email };
+
+                        fetch('http://localhost:5000/users',{
+                        method: 'POST',
+                        headers: {
+                            'content-type' : 'application/json'
                         },
-                        hideClass: {
-                            popup: 'animate__animated animate__fadeOutUp'
-                        }
-                    });
-                    navigate("/");
-                })
-                .catch(error => {
-                    setError(error.message);
-                    console.log(error);
-                })
+                        body: JSON.stringify(savedUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: 'Successfully Sign Up User',
+                                        icon: 'success',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    });
+                                    navigate("/");
+                                }
+                            })
+                    })
+                    .catch(error => {
+                        setError(error.message);
+                        console.log(error);
+                    })
             })
     }
 
