@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaAlignJustify, FaHamburger } from 'react-icons/fa';
 
 const Dashboard = () => {
@@ -21,16 +21,16 @@ const Dashboard = () => {
             <p className='font-semibold tracking-widest'>Restaurant</p>
           </div>
           {/* Sidebar content here */}
-          <li><Link><FaHome/>User Home</Link></li>
-          <li><Link><FaCalendarAlt/>Reservations</Link></li>
-          <li><Link><FaWallet/>Payment History</Link></li>
-          <li><Link to='/dashboard/myCart'><FaShoppingCart/>My Cart</Link></li>
+          <li><NavLink to='/dashboard/home'><FaHome/>User Home</NavLink></li>
+          <li><NavLink to='/dashboard/reservations'><FaCalendarAlt/>Reservations</NavLink></li>
+          <li><NavLink to='/dashboard/history'><FaWallet/>Payment History</NavLink></li>
+          <li><NavLink to='/dashboard/myCart'><FaShoppingCart/>My Cart</NavLink></li>
 
           <div className="divider bg-white h-1"></div>
 
-          <li><Link to='/'><FaHome/>Home</Link></li>
-          <li><Link to='/menu'><FaAlignJustify/>Our Menu</Link></li>
-        <li><Link to='/order/salads'><FaHamburger/>Order Food</Link></li>
+          <li><NavLink to='/'><FaHome/>Home</NavLink></li>
+          <li><NavLink to='/menu'><FaAlignJustify/>Our Menu</NavLink></li>
+        <li><NavLink to='/order/salads'><FaHamburger/>Order Food</NavLink></li>
           
         </ul>
 
