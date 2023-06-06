@@ -2,7 +2,9 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
+import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Menu from "../Pages/Menu/Menu/Menu";
@@ -39,6 +41,16 @@ export const router = createBrowserRouter([
             {
                 path: 'secret',
                 element: <PrivateRoute><Secret></Secret></PrivateRoute>
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'myCart',
+                element: <MyCart></MyCart>
             }
         ]
     }
