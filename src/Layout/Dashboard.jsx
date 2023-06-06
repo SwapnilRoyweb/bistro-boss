@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaAlignJustify, FaHamburger } from 'react-icons/fa';
+import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
+
+  const [cart] = useCart();
+
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -21,17 +25,21 @@ const Dashboard = () => {
             <p className='font-semibold tracking-widest'>Restaurant</p>
           </div>
           {/* Sidebar content here */}
-          <li><NavLink to='/dashboard/home'><FaHome/>User Home</NavLink></li>
-          <li><NavLink to='/dashboard/reservations'><FaCalendarAlt/>Reservations</NavLink></li>
-          <li><NavLink to='/dashboard/history'><FaWallet/>Payment History</NavLink></li>
-          <li><NavLink to='/dashboard/myCart'><FaShoppingCart/>My Cart</NavLink></li>
+          <li><NavLink to='/dashboard/home'><FaHome />User Home</NavLink></li>
+          <li><NavLink to='/dashboard/reservations'><FaCalendarAlt />Reservations</NavLink></li>
+          <li><NavLink to='/dashboard/history'><FaWallet />Payment History</NavLink></li>
+          <li>
+            <NavLink to='/dashboard/myCart'><FaShoppingCart />My Cart
+            <span className="badge badge-secondary">+{cart?.length || 0}</span>
+            </NavLink>
+          </li>
 
           <div className="divider bg-white h-1"></div>
 
-          <li><NavLink to='/'><FaHome/>Home</NavLink></li>
-          <li><NavLink to='/menu'><FaAlignJustify/>Our Menu</NavLink></li>
-        <li><NavLink to='/order/salads'><FaHamburger/>Order Food</NavLink></li>
-          
+          <li><NavLink to='/'><FaHome />Home</NavLink></li>
+          <li><NavLink to='/menu'><FaAlignJustify />Our Menu</NavLink></li>
+          <li><NavLink to='/order/salads'><FaHamburger />Order Food</NavLink></li>
+
         </ul>
 
       </div>
