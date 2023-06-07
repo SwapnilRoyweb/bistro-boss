@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaAlignJustify, FaHamburger } from 'react-icons/fa';
+import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaAlignJustify, FaHamburger, FaUtensilSpoon, FaBook, FaUsers } from 'react-icons/fa';
 import useCart from '../hooks/useCart';
 
 const Dashboard = () => {
 
   const [cart] = useCart();
+
+  // TODO: load data from the server to have dynamic isAdmin based on data
+  const isAdmin = true;
 
   return (
     <div className="drawer drawer-mobile">
@@ -25,14 +28,24 @@ const Dashboard = () => {
             <p className='font-semibold tracking-widest'>Restaurant</p>
           </div>
           {/* Sidebar content here */}
-          <li><NavLink to='/dashboard/home'><FaHome />User Home</NavLink></li>
-          <li><NavLink to='/dashboard/reservations'><FaCalendarAlt />Reservations</NavLink></li>
-          <li><NavLink to='/dashboard/history'><FaWallet />Payment History</NavLink></li>
-          <li>
-            <NavLink to='/dashboard/myCart'><FaShoppingCart />My Cart
-            <span className="badge badge-secondary">+{cart?.length || 0}</span>
-            </NavLink>
-          </li>
+          {
+            isAdmin ? <>
+              <li><NavLink to='/dashboard/home'><FaHome />Admin Home</NavLink></li>
+              <li><NavLink to='/dashboard/reservations'><FaUtensilSpoon />Add Item</NavLink></li>
+              <li><NavLink to='/dashboard/history'><FaAlignJustify />Manage Items</NavLink></li>
+              <li><NavLink to='/dashboard/history'><FaBook />Manage Bookings</NavLink></li>
+              <li><NavLink to='/dashboard/allUsers'><FaUsers />All Users</NavLink></li>
+            </> : <>
+              <li><NavLink to='/dashboard/home'><FaHome />User Home</NavLink></li>
+              <li><NavLink to='/dashboard/reservations'><FaCalendarAlt />Reservations</NavLink></li>
+              <li><NavLink to='/dashboard/history'><FaWallet />Payment History</NavLink></li>
+              <li>
+                <NavLink to='/dashboard/myCart'><FaShoppingCart />My Cart
+                  <span className="badge badge-secondary">+{cart?.length || 0}</span>
+                </NavLink>
+              </li>
+            </>
+          }
 
           <div className="divider bg-white h-1"></div>
 
