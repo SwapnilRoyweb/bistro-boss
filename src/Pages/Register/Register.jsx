@@ -7,6 +7,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Register = () => {
 
@@ -112,6 +113,7 @@ const Register = () => {
                             </div>
                             <p className='text-center text-white'><small>Already have an account? <Link to='/login' className='text-blue-500'>Sign In</Link></small></p>
                         </form>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

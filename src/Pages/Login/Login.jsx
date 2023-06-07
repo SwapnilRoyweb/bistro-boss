@@ -8,6 +8,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -49,6 +50,7 @@ const Login = () => {
                     }
                 });
                 navigate(from, { replace: true });
+                setError('');
             })
             .catch(error => {
                 console.log(error);
@@ -104,6 +106,7 @@ const Login = () => {
                             </div>
                             <p className='text-center text-white'><small>New here? <Link to='/signup' className='text-blue-500'>Create an Account</Link></small></p>
                         </form>
+                            <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
