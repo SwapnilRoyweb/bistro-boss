@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaTrashAlt, FaUserSecret} from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
 
@@ -10,12 +11,27 @@ const AllUsers = () => {
         return res.json();
     })
 
-    const handleDelete = () => {
+    const handleDelete = (user) => {
 
     }
 
-    const handleMakeAdmin = id => {
-        
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data);
+            if(data.modifiedCount){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is made an Admin Now`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
     }
 
     return (
@@ -43,7 +59,7 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    { user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-square text-white text-xl bg-orange-400'><FaUserSecret/></button>}
+                                    { user.role === 'admin' ? 'admin' : <button onClick={() => handleMakeAdmin(user)} className='btn btn-square text-white text-xl bg-orange-400'><FaUserSecret/></button>}
                                 </td>
                                 <td>
                                     <button onClick={() => handleDelete(user)} className="btn btn-error text-xl text-white"><FaTrashAlt /></button>
