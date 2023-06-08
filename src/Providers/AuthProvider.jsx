@@ -56,12 +56,12 @@ const AuthProvider = ({ children }) => {
                 .then(data => {
                     // console.log(data);
                     localStorage.setItem('access-token', data.data.token);
+                    setLoading(false);
                 })
-            }else{
+            }
+            else{
                 localStorage.removeItem('access-token');
             }
-
-            setLoading(false);
         });
         return () => {
             return unsubscribe();
