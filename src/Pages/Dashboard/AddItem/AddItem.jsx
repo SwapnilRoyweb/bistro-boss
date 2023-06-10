@@ -2,12 +2,16 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle.jsx';
 import { FaUtensilSpoon } from 'react-icons/fa'
 import { useForm } from "react-hook-form";
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const AddItem = () => {
 
-    const { handleSubmit, register, formState: { errors } } = useForm();
+    const [axiosSecure] = useAxiosSecure();
+
+    const { handleSubmit, register, reset } = useForm();
 
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
 
@@ -27,7 +31,21 @@ const AddItem = () => {
                 const imgURL =  imgResponse.data.display_url;
                 const {name, price, category, recipe} = data;
                 const newItem = {name, price: parseFloat(price), category, recipe, image: imgURL}
-                console.log(newItem);
+                // console.log(newItem);
+                axiosSecure.post('/menu', newItem)
+                .then(data => {
+                    // console.log('After posting new menu item', data);
+                    if(data.data.insertedId){
+                        reset();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Item Added successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }
+                })
             }
         })
 
