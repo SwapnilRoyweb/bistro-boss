@@ -38,7 +38,7 @@ const AllUsers = () => {
     }
 
     return (
-        <div>
+        <div className='h-full flex flex-col justify-center items-center'>
             <Helmet>
                 <title>Bistro Boss | All Users</title>
             </Helmet>

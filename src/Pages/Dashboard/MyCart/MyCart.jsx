@@ -40,16 +40,16 @@ const MyCart = () => {
     }
 
     return (
-        <div>
+        <div className='flex flex-col justify-center mx-20 h-full'>
             <Helmet>
                 <title>Bistro Boss | My Cart</title>
             </Helmet>
-            <div className='uppercase text-2xl font-semibold flex justify-between h-[60px] items-center'>
+            <div className='uppercase text-2xl font-semibold flex justify-evenly h-[60px] items-center'>
                 <h3>Total Orders: {cart.length}</h3>
                 <h3>Total Price: ${total}</h3>
                 <button className='btn btn-warning btn-sm'>Pay</button>
             </div>
-            <div className="overflow-x-auto mt-5">
+            <div className="overflow-x-auto mt-5 flex justify-center">
                 <table className="table text-white">
                     {/* head */}
                     <thead>
