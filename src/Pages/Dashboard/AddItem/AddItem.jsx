@@ -54,7 +54,7 @@ const AddItem = () => {
     // console.log(img_hosting_token);
 
     return (
-        <div className=''>
+        <div className='flex flex-col justify-center items-center h-full'>
             <SectionTitle subHeading="What's new" heading="Add an item"></SectionTitle>
             <form className='mx-5' onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control w-full">
@@ -96,7 +96,7 @@ const AddItem = () => {
                     </label>
                     <input {...register("image", {required: true})} type="file" className="file-input file-input-bordered w-full max-w-xs text-white" />
                 </div>
-                <input type="submit" value='Add Item' className='btn text-white bg-[#835D23] hover:bg-white hover:text-[#835D23] mt-5' />
+                <input type="submit" value='Add Item' className='w-full btn text-white bg-[#835D23] hover:bg-white hover:text-[#835D23] mt-5' />
             </form>
         </div>
     );

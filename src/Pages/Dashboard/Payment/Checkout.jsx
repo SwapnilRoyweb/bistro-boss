@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import './Checkout.css';
 
 const Checkout = ({ price, cart }) => {
 
@@ -21,12 +22,14 @@ const Checkout = ({ price, cart }) => {
     const [transactionId, setTransactionId] = useState('');
 
     useEffect(() => {
-        console.log(price)
-        axiosSecure.post('/create-payment-intent', { price })
+        // console.log(price)
+        if(price > 0){
+            axiosSecure.post('/create-payment-intent', { price })
             .then(res => {
                 setClientSecret(res.data.clientSecret)
                 // console.log(res.data.clientSecret);
             })
+        }
     }, [])
 
     const handleSubmit = async (event) => {
@@ -86,8 +89,11 @@ const Checkout = ({ price, cart }) => {
             const payment = {email: user?.email, 
                 transactionId: paymentIntent.id, 
                 price,
+                date: new Date(),
                 quantity: cart.length,
-                items: cart.map(item => item._id),
+                cartItems: cart.map(item => item._id),
+                menuItems: cart.map(item => item.menuItemId),
+                status: 'service pending',
                 itemNames: cart.map(item => item.name)
             }
             axiosSecure.post('/payments', payment)

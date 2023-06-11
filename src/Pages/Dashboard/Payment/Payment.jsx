@@ -16,7 +16,7 @@ const Payment = () => {
     const price = parseFloat(total.toFixed(2));
 
     return (
-        <div className='flex flex-col justify-center mx-20 h-full'>
+        <div className='flex flex-col items-center justify-center mx-20 h-full'>
             <SectionTitle subHeading="Please Process" heading="Payment"></SectionTitle>
             <Elements stripe={stripePromise}>
                 <Checkout cart={cart} price={price}></Checkout>
