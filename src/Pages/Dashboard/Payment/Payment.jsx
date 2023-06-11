@@ -19,7 +19,7 @@ const Payment = () => {
         <div className='flex flex-col justify-center mx-20 h-full'>
             <SectionTitle subHeading="Please Process" heading="Payment"></SectionTitle>
             <Elements stripe={stripePromise}>
-                <Checkout price={price}></Checkout>
+                <Checkout cart={cart} price={price}></Checkout>
             </Elements>
         </div>
     );
