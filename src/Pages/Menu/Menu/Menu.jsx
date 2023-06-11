@@ -14,6 +14,7 @@ import soupImg from '../../../assets/menu/soup-bg.jpg'
 const Menu = () => {
 
     const [menu] = useMenu();
+    // console.log(menu);
 
     const desserts = menu.filter(item => item.category === "dessert");
     const soup = menu.filter(item => item.category === "soup");
