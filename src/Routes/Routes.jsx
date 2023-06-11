@@ -5,10 +5,12 @@ import {
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
 import AddItem from "../Pages/Dashboard/AddItem/AddItem";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Menu from "../Pages/Menu/Menu/Menu";
@@ -54,6 +56,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
+                path: 'userHome',
+                element: <UserHome></UserHome>
+            },
+            {
                 path: 'myCart',
                 element: <MyCart></MyCart>
             },
@@ -62,6 +68,10 @@ export const router = createBrowserRouter([
                 element: <Payment></Payment>
             },
             // Admin route
+            {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
             {
                 path: 'allUsers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>

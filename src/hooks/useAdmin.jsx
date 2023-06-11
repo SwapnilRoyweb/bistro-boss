@@ -9,6 +9,7 @@ const useAdmin = () => {
 
     const {data: isAdmin, isLoading: isAdminLoading} = useQuery({
         queryKey: ['isAdmin', user?.email],
+        enabled: !loading,
         queryFn: async () => {
             const response = await fetch(`http://localhost:5000/users/admin/${user?.email}`, {
                 headers: {

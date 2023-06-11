@@ -6,10 +6,13 @@ import './Navbar.css'
 import { FaShoppingCart } from 'react-icons/fa';
 import { useEffect } from 'react';
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Navbar = () => {
 
     const { user, logout } = useContext(AuthContext);
+
+    const [isAdmin] = useAdmin();
 
     const [cart] = useCart();
 
@@ -24,12 +27,11 @@ const Navbar = () => {
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link>Contact Us</Link></li>
-        <li><Link>Dashboard</Link></li>
+        <li><Link to={ isAdmin ? '/dashboard/adminHome' : '/dashboard/userHome'}>Dashboard</Link></li>
         <li><Link to='/menu'>Our Menu</Link></li>
         <li><Link to='/order/salads'>Order Food</Link></li>
-        <li><Link to='/secret'>Secret</Link></li>
         <li>
-            <Link to='/dashboard/myCart'>
+            <Link to={isAdmin ? '/dashboard/adminHome' : '/dashboard/myCart'}>
                 <button className="btn gap-2">
                     <FaShoppingCart />
                     <div className="badge badge-secondary">+{cart?.length || 0}</div>
